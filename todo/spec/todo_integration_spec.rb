@@ -5,6 +5,9 @@ Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
 describe("add a task", {:type => :feature}) do
+  before() do
+    Task.clear()
+  end
   it("processes the user input and adds task to the list") do
     visit("/")
     fill_in("description", :with => "bathe the cat")

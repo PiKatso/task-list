@@ -15,7 +15,7 @@ class Task
   end
   #method to push the tasks into the all_tasks
   define_method(:save) do
-    @@all_tasks.push(self)
+    @@all_tasks.push(self.description)
   end
   #method to clear the list
   define_singleton_method(:clear) do
