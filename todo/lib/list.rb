@@ -1,5 +1,6 @@
 class List
   attr_reader(:name, :id)
+  @@list_id = nil
 
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)

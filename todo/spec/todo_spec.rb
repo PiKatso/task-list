@@ -38,15 +38,15 @@ describe(Task) do
 
   describe(".all_by_date") do
     it("returns an array of all tasks ordered by date") do
-      test_task1 = Task.new({:description => "learn SQL", :list_id => 1, :due_date => '2015-05-05'})
+      test_task1 = Task.new({:description => "learn SQL", :list_id => 1, :due_date => '2014-05-05'})
       test_task1.save
-      test_task2 = Task.new({:description => "learn SQL", :list_id => 1, :due_date => '2016-05-05'})
+      test_task2 = Task.new({:description => "learn SQL", :list_id => 1, :due_date => '2012-05-05'})
       test_task2.save
       test_task3 = Task.new({:description => "learn SQL", :list_id => 1, :due_date => '2017-05-05'})
       test_task3.save
       test_task4 = Task.new({:description => "learn SQL", :list_id => 1, :due_date => '2018-05-05'})
       test_task4.save
-      expect(Task.all_by_date).to(eq([test_task1, test_task2, test_task3, test_task4]))
+      expect(Task.all_by_date).to(eq([test_task2, test_task1, test_task3, test_task4]))
     end
   end
 
