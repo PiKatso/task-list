@@ -1,22 +1,25 @@
-<h1>To Do</h1>
-
-<p>Here are all your tasks:</p>
-
-<ul>
-  <% @tasks.each() do |task| %>
-    <li><%="#{task.description}, Due: #{task.due_date}"%></li>
-  <% end %>
-</ul>
+<h3>Here are all your tasks:</h3>
 <br>
-<p>Create a new task:</p>
-
+<% if @tasks.any?() %>
+  <ul>
+    <% @tasks.each() do |task| %>
+      <li><%="#{task.description}, Due: #{task.due_date}"%></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>
+    <em>There are currently no tasks</em>
+  </p>
+<%end%>
+<br>
+<hr>
 <form action="/new_task" method="post">
-  <label for="description">Task Description:</label>
-  <input id="description" name="description" type="text" required>
-  <label for="due_date">Due Date:</label>
-  <input id="due_date" name="due_date" type="date" required>
+  <h4>Add a task: </h4>
+  <input class="form-control" id="description" name="description" placeholder="Enter a task description" type="text" required>
+  <input class="form-control" id="due_date" name="due_date" type="date" required>
 
-  <button type="submit">Add task</button>
+  <button class="btn btn-default" type="submit">Add task</button>
 </form>
-
+<br>
+<hr>
 <a href="/">Return Home</a>

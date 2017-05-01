@@ -1,5 +1,5 @@
 <h3>Create a list</h3>
-
+<br>
 <% if @lists.any?() %>
   <ul>
     <% @lists.each do |list| %>
@@ -11,10 +11,10 @@
   There are no lists yet! Make one below.
   </p>
 <%end%>
+<br>
 <form action="/new_list" method="post">
-  <label for="list_name">Name your list:</label>
-  <input type="text" name="list_name" required>
-  <button type="submit" name="button">Create</button>
+  <input class="form-control" type="text" name="list_name" placeholder="Name your list" required>
+  <button class="btn btn-default" type="submit" name="button">Create</button>
 </form>
-
+<hr>
 <a href="/list_delete"><button class="btn btn-danger" name="button">Delete a list</button></a>
