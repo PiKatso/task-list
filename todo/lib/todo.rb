@@ -26,6 +26,19 @@ class Task
     end
     tasks
   end
+
+  define_singleton_method(:all_by_date) do
+    returned_tasks = DB.exec("SELECT * FROM tasks ORDER BY due_date;")
+    tasks = []
+    returned_tasks.each do |task|
+      description = task.fetch("description")
+      list_id = task.fetch("list_id").to_i
+      due_date = task.fetch("due_date")
+      tasks.push(Task.new({:description => description, :list_id => list_id, :due_date => due_date}))
+    end
+    tasks
+  end
+
   #method to push the tasks into the all_tasks
   define_method(:save) do
     DB.exec("INSERT INTO tasks (description, list_id, due_date) VALUES ('#{@description}', #{@list_id}, '#{@due_date}');")
