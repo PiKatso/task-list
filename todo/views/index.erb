@@ -1,11 +1,16 @@
 <h3>Create a list</h3>
 
-<ul>
-  <% @lists.each do |list| %>
-    <a href="/list/<%= list.id %>"><li><%= list.name %></li></a>
-  <% end %>
-</ul>
-
+<% if @lists.any?() %>
+  <ul>
+    <% @lists.each do |list| %>
+      <a href="/list/<%= list.id %>"><li><%= list.name %></li></a>
+    <% end %>
+  </ul>
+<%else%>
+  <p>
+  There are no lists yet! Make one below.
+  </p>
+<%end%>
 <form action="/new_list" method="post">
   <label for="list_name">Name your list:</label>
   <input type="text" name="list_name" required>
