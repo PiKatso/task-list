@@ -1,33 +1,46 @@
-require('rspec')
-require('todo')
+require('spec_helper')
 
 describe(Task) do
-  before() do
-    Task.clear()
-  end
-  describe("#description") do
-    it("lets you give it a description") do
-      test_task = Task.new("bathe the cat")
-      expect(test_task.description()).to(eq("bathe the cat"))
-    end
-  end
   describe(".all") do
     it("is empty at first") do
       expect(Task.all()).to(eq([]))
     end
   end
+
   describe("#save") do
     it("adds a task to the array of saved tasks") do
-      test_task = Task.new("wash the lion")
+      test_task = Task.new({:description => "learn SQL", :list_id => 1, :due_date => 'May 5th'})
       test_task.save()
-      expect(Task.all()).to(eq(["wash the lion"]))
+      expect(Task.all()).to(eq([test_task]))
     end
   end
-  describe(".clear") do
-    it("empties out all of the saved tasks") do
-      Task.new("wash the lion").save()
-      Task.clear()
-      expect(Task.all()).to(eq([]))
+
+  describe("#description") do
+    it("lets you read the description out") do
+      test_task = Task.new({:description => "learn SQL", :list_id => 1, :due_date => 'May 5th'})
+      expect(test_task.description()).to(eq("learn SQL"))
+    end
+  end
+
+  describe("#list_id") do
+    it("lets you read the list ID out") do
+      test_task = Task.new({:description => "learn SQL", :list_id => 1, :due_date => 'May 5th'})
+      expect(test_task.list_id()).to(eq(1))
+    end
+  end
+
+  describe("#due_date") do
+    it("lets you read the due date out") do
+      test_task = Task.new({:description => "learn SQL", :list_id => 1, :due_date => 'May 5th'})
+      expect(test_task.due_date).to(eq('May 5th'))
+    end
+  end
+
+  describe("#==") do
+    it("is the same task if it has the same description and list ID") do
+      task1 = Task.new({:description => "learn SQL", :list_id => 1, :due_date => 'May 5th'})
+      task2 = Task.new({:description => "learn SQL", :list_id => 1, :due_date => 'May 5th'})
+      expect(task1).to(eq(task2))
     end
   end
 end
